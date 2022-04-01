@@ -1,4 +1,5 @@
 import requests
+from PyQt5.QtWidgets import QMessageBox
 
 class Main():
     def query(self, hostname):

@@ -1,14 +1,13 @@
 from shodan import Shodan
 from typing import Optional
 from fastapi import FastAPI
-
 app = FastAPI()
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
+#@app.get("/")
+#async def read_root():
+    #return {"Hello": "World"}
 
-    @app.get("/ip/{ip}")
+@app.get("/ip/{ip}")
 async def get_ip(ip: str, key: Optional[str] = None):
     if key is None:
         return {"Error": "Please provide a valid API key"}
@@ -20,6 +19,14 @@ async def get_ip(ip: str, key: Optional[str] = None):
                 "IP": res["ip_str"],
                 "Organization": res["org"],
                 "Country": res["country_name"],
+                "Longitude": res["longitude"],
+                "Latitude": res["latitude"],
             }
         except Exception as e:
             return {"Error": str(e)}
+
+@app.get("/")
+
+async def read_root():
+
+    return {"Hello": "World"}            
